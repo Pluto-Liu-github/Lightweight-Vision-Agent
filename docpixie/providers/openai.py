@@ -27,7 +27,7 @@ class OpenAIProvider(BaseProvider):
         except ImportError:
             raise ImportError("OpenAI library not found. Install with: pip install openai")
         
-        self.model = config.openai_vision_model
+        self.model = config.vision_model
     
     async def process_text_messages(
         self, 
@@ -38,7 +38,7 @@ class OpenAIProvider(BaseProvider):
         """Process text-only messages through OpenAI API"""
         try:
             response = await self.client.chat.completions.create(
-                model=self.config.openai_model_pro,  # Use text model for text-only
+                model=self.config.pro_model,  # Use pro model for text-only
                 messages=messages,
                 max_tokens=max_tokens,
                 temperature=temperature
